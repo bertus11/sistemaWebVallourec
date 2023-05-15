@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Página Principal</title>
+  </head>
+  <link rel="stylesheet" href="exibicao.css">
+  <body>
+    <h1></h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Índice</th>
+          <th>Tipo</th>
+          <th>Material</th>
+          <th>Quantidade</th>
+          <th>Data</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script>
+          let solicitacoes = localStorage.getItem('solicitacoes');
+          if (solicitacoes !== null) {
+            solicitacoes = JSON.parse(solicitacoes);
+            for (let i = 0; i < solicitacoes.length; i++) {
+              const solicitacao = solicitacoes[i];
+              document.write('<tr>');
+              document.write('<td>' + i + '</td>');
+              document.write('<td>' + solicitacao.tipo + '</td>');
+              document.write('<td>' + solicitacao.material + '</td>');
+              document.write('<td>' + solicitacao.quantidade + '</td>');
+              document.write('<td>' + solicitacao.data + '</td>');
+              document.write('<td>' + solicitacao.status + '</td>');
+              document.write('</tr>');
+            }
+          }
+        </script>
+      </tbody>
+    </table>
+    <footer>
+        <button onclick="window.location.href = 'login.html';">Voltar para a tela de login</button>
+    </footer>
+  </body>
+</html>

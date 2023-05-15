@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Solicitações</title>
+  </head>
+  <link rel="stylesheet" href="gestao.css">
+  <body>
+    <h1>Solicitações</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Índice</th>
+          <th>Tipo</th>
+          <th>Material</th>
+          <th>Quantidade</th>
+          <th>Data</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script>
+          let solicitacoes = localStorage.getItem('solicitacoes');
+          if (solicitacoes !== null) {
+            solicitacoes = JSON.parse(solicitacoes);
+            for (let i = 0; i < solicitacoes.length; i++) {
+              const solicitacao = solicitacoes[i];
+              document.write('<tr>');
+              document.write('<td>' + i + '</td>');
+              document.write('<td>' + solicitacao.tipo + '</td>');
+              document.write('<td>' + solicitacao.material + '</td>');
+              document.write('<td>' + solicitacao.quantidade + '</td>');
+              document.write('<td>' + solicitacao.data + '</td>');
+              document.write('<td>');
+              document.write('<select onchange="updateStatus(' + i + ', this.value)">');
+              document.write('<option value="solicitada" ' + (solicitacao.status === 'solicitada' ? 'selected' : '') + '>Solicitada</option>');
+              document.write('<option value="programada" ' + (solicitacao.status === 'programada' ? 'selected' : '') + '>Programada</option>');
+              document.write('<option value="concluida" ' + (solicitacao.status === 'concluida' ? 'selected' : '') + '>Concluída</option>');
+              document.write('<option value="cancelada" ' + (solicitacao.status === 'cancelada' ? 'selected' : '') + '>Cancelada</option>');
+              document.write('</select>');
+              document.write('</td>');
+              document.write('</tr>');
+            }
+          }
+
+          function updateStatus(index, status) {
+            let solicitacoes = localStorage.getItem('solicitacoes');
+            if (solicitacoes !== null) {
+              solicitacoes = JSON.parse(solicitacoes);
+              solicitacoes[index].status = status;
+              localStorage.setItem('solicitacoes', JSON.stringify(solicitacoes));
+            }
+          }
+        </script>
+      </tbody>
+    </table>
+    <footer>
+        <button onclick="window.location.href = 'login.html';">Voltar para a tela de login</button>
+        <button onclick="window.location.href = 'exibicao.html';">Ir para a página principal</button>
+    </footer>
+  </body>
+</html>

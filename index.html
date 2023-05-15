@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<link rel="stylesheet" href="login.css">
+<body>
+  <div class="login-container">
+    <h1>Olá, inicie sua sessão:</h1>
+    <form id="login-form">
+      <label for="username">Nome de usuário:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="error-message"></p>
+  </div>
+  <script>
+    const form = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+    
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+    
+      if (username === 'fabrica') {
+        window.location.href = 'solicitacao.html';
+      } else if (username === 'logistica'){
+        window.location.href = 'gestao.html';
+      } else{
+        window.location.href = 'exibicao.html';
+      }
+    });
+  </script>
+</body>
+</html>
